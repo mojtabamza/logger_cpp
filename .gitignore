@@ -1,0 +1,10 @@
+#git ignore
+
+.vs/*
+*.user
+*.filters
+*.vcxproj
+*.sln
+*.swap
+x64/*
+.vs/
