@@ -9,10 +9,10 @@
 int main(void) {
 	Display_t	display;
 
-	Systick_t::get_instance()->add_task("input_gen", 5);
-	Systick_t::get_instance()->add_task("display",	10);
-	Systick_t::get_instance()->add_task("buffer",	50);
-	Systick_t::get_instance()->add_task("logger",	100);
+	Systick_t::get_instance()->add_task("flag(0)",	5);
+	Systick_t::get_instance()->add_task("flag(1)",	10);
+	Systick_t::get_instance()->add_task("flag(2)",	50);
+	Systick_t::get_instance()->add_task("flag(3)",	100);
 
 	while (true)
 	{
