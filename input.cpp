@@ -10,7 +10,7 @@ Input_t* Input_t::get_instance() {
 }
 
 Input_t::Input_t() {
-
+	this->input_generator();
 }
 
 void Input_t::input_generator(void) {
