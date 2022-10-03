@@ -11,7 +11,7 @@ int main(void) {
 
 	Systick_t::get_instance()->add_task("flag(0)",	5);
 	Systick_t::get_instance()->add_task("flag(1)",	10);
-	Systick_t::get_instance()->add_task("flag(2)",	50);
+	Systick_t::get_instance()->add_task("flag(2)",	10);
 	Systick_t::get_instance()->add_task("flag(3)",	100);
 
 	while (true)
