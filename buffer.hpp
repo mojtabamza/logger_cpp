@@ -15,6 +15,7 @@ public:
 	void set_configs();
 	void task();
 	void get_buffer(int address, float& value);
+	//Input_t* input_obj;
 	Communication_t* communication; //reserve to get data from peripherals
 private:
 	Buffer_t();

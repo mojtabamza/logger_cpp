@@ -10,10 +10,10 @@ Input_t* Input_t::get_instance() {
 }
 
 Input_t::Input_t() {
-	this->input_generator();
+	this->task();
 }
 
-void Input_t::input_generator(void) {
+void Input_t::task(void) {
 	this->input_value = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100));
 }
 

@@ -5,7 +5,8 @@
 class Input_t {
 public:
 	static Input_t* get_instance();
-	void input_generator(void);
+	//Input_t();
+	void task(void);
 	float get_instant_value();
 private:
 	Input_t();

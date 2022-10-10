@@ -9,7 +9,7 @@ Buffer_t* Buffer_t::get_instance() {
 	return instance;
 }
 
-Buffer_t::Buffer_t() {
+Buffer_t::Buffer_t() : communication() {
 	this->value = 0;
 }
 

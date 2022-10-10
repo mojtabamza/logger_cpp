@@ -11,7 +11,7 @@ Logger_t* Logger_t::get_instance()
 
 void Logger_t::task()
 {
-    cout << "Logger" << endl;
+
 }
 
 void Logger_t::set_configs() {
@@ -20,7 +20,8 @@ void Logger_t::set_configs() {
 void Logger_t::get_configs(string& configs) {
 }
 
-Logger_t::Logger_t() {
+Logger_t::Logger_t()  {
+
 
 }
 
