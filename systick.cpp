@@ -24,7 +24,7 @@ void Systick_t::add_task(string task_name, int interval) {
 
 void Systick_t::systick_handler() {
 	static int timer = 0;
-	if (++timer >= 50000) {
+	if (++timer >= 5000) {
 		timer = 0;
 		systick_isr();
 	}
