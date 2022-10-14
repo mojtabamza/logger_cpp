@@ -7,9 +7,9 @@ constexpr auto _00_00 = 0;
 constexpr auto _23_59 = (23 * 60) + 59;
 
 enum logger_mode {
-	min = 0,
-	max,
-	mean,
+	MIN = 0,
+	MAX,
+	MEAN,
 };
 enum logger_status {
 	DISABLE = 0,
@@ -29,8 +29,8 @@ class Logger_t {
 public:
 	static Logger_t* get_instance();
 	void task();
-	void set_configs();
-	void get_configs(string& configs);
+	void set_configs(int interval, logger_mode mode, int start_time, int stop_time);
+	logger_setting get_configs(void);
 	void make_log();
 	void ready_to_log(date_time& time_strct);
 	
