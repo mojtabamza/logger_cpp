@@ -7,6 +7,7 @@
 
 class Display_t {
 public:
+	Display_t();
 	void show();
 	Date_Time_t* disp_time;
 };

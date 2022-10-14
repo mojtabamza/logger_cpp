@@ -1,9 +1,12 @@
 #include "display.hpp"
 
+Display_t::Display_t() : disp_time() {
+}
+
 void Display_t::show()
 {
 	
-	float temp;
+	double temp;
 	date_time disp_time_strct;
 
 	system("CLS");
@@ -22,6 +25,6 @@ void Display_t::show()
 
 
 	//cout << "Instant Value : " << Input_t::get_instance()->get_instant_value() << endl;
-	Buffer_t::get_instance()->get_buffer(instant_value, temp);
+	Buffer_t::get_instance()->get_buffer(INSTANT_VALUE, temp);
 	cout << "Instant Value : " << temp << endl;
 }
