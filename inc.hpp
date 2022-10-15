@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
+#include "appwizard.hpp"
 
 using std::cout;
 using std::cin;
