@@ -43,12 +43,27 @@ logger_setting Logger_t::get_configs(void) {
     return logger_setting_obj;
 }
 
-void Logger_t::make_log() {
-    cout << "make log" << endl;
+void Logger_t::make_log(date_time& time_strct, string data) {
+#ifdef DESKTOP
+    std::fstream FILE;
+    FILE.open("logger.txt", std::ios::out | std::ios::app);
+    if (FILE.is_open()) {
+        FILE << "[" <<
+            time_strct.date_strct_obj.year << "." <<
+            time_strct.date_strct_obj.month << "." <<
+            time_strct.date_strct_obj.day <<
+            "]" << "[" <<
+            time_strct.time_strct_obj.hh << ":" <<
+            time_strct.time_strct_obj.mm << ":" <<
+            time_strct.time_strct_obj.ss <<
+            "]" << "\n";
+        FILE.close();
+    }
+#endif // DESKTOP
 }
 
 void Logger_t::ready_to_log(date_time& time_strct) {
-    cout << "ready to log" << endl;
+    make_log(time_strct, "");
 }
 
 Logger_t::Logger_t() : time_obj() {

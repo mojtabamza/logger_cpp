@@ -3,6 +3,13 @@
 #include "buffer.hpp"
 #include "time.hpp"
 
+#ifdef DESKTOP
+#include <fstream>
+#endif
+#ifdef EMBEDDED
+#include "fatfs.h"
+#endif
+
 constexpr auto _00_00 = 0;
 constexpr auto _23_59 = (23 * 60) + 59;
 
@@ -31,7 +38,7 @@ public:
 	void task();
 	void set_configs(int interval, logger_mode mode, int start_time, int stop_time);
 	logger_setting get_configs(void);
-	void make_log();
+	void make_log(date_time& time_strct, string data);
 	void ready_to_log(date_time& time_strct);
 	
 private:
