@@ -55,6 +55,7 @@ void Buffer_t::get_buffer(int address, double& value) {
 		break;
 	case MEAN_VALUE:
 		value = buff_values.buf_value_1 / counter;
+		counter = 0;
 		break;
 
 	default:
