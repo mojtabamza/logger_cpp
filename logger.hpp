@@ -38,8 +38,9 @@ public:
 	void task();
 	void set_configs(int interval, logger_mode mode, int start_time, int stop_time);
 	logger_setting get_configs(void);
-	void make_log(date_time& time_strct, string data);
+	void make_log(string time_stamp, string data);
 	void ready_to_log(date_time& time_strct);
+	string make_timestamp(date_time& time_strct);
 	
 private:
 	Logger_t();

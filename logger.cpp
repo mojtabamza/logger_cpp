@@ -43,27 +43,32 @@ logger_setting Logger_t::get_configs(void) {
     return logger_setting_obj;
 }
 
-void Logger_t::make_log(date_time& time_strct, string data) {
+void Logger_t::make_log(string time_stamp, string data) {
 #ifdef DESKTOP
     std::fstream FILE;
     FILE.open("logger.txt", std::ios::out | std::ios::app);
     if (FILE.is_open()) {
-        FILE << "[" <<
-            time_strct.date_strct_obj.year << "." <<
-            time_strct.date_strct_obj.month << "." <<
-            time_strct.date_strct_obj.day <<
-            "]" << "[" <<
-            time_strct.time_strct_obj.hh << ":" <<
-            time_strct.time_strct_obj.mm << ":" <<
-            time_strct.time_strct_obj.ss <<
-            "]" << "\n";
+        FILE << time_stamp;
         FILE.close();
     }
 #endif // DESKTOP
 }
 
 void Logger_t::ready_to_log(date_time& time_strct) {
-    make_log(time_strct, "");
+    string time_stamp = make_timestamp(time_strct);
+    make_log(time_stamp, "");
+}
+
+string Logger_t::make_timestamp(date_time& time_strct) {
+    char time_stamp[33] = {0};
+    sprintf_s(time_stamp, "[%d.%02d.%02d][%02d:%02d:%02d]\r\n",
+        time_strct.date_strct_obj.year,
+        time_strct.date_strct_obj.month,
+        time_strct.date_strct_obj.day,
+        time_strct.time_strct_obj.hh,
+        time_strct.time_strct_obj.mm,
+        time_strct.time_strct_obj.ss);
+    return string(time_stamp);
 }
 
 Logger_t::Logger_t() : time_obj() {
