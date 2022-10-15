@@ -27,4 +27,16 @@ void Display_t::show()
 	//cout << "Instant Value : " << Input_t::get_instance()->get_instant_value() << endl;
 	Buffer_t::get_instance()->get_buffer(INSTANT_VALUE, temp);
 	cout << "Instant Value : " << temp << endl;
+
+#ifdef DESKTOP
+	std::fstream FILE;
+	FILE.open("logger.txt", std::ios::in);
+	if (FILE.is_open()) {
+		string line;
+		while (getline(FILE, line)) {
+			cout << line << endl;
+		}
+		FILE.close();
+	}
+#endif
 }

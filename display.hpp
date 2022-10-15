@@ -4,6 +4,12 @@
 #include "buffer.hpp"
 #include "time.hpp"
 
+#ifdef DESKTOP
+#include <fstream>
+#endif
+#ifdef EMBEDDED
+#include "fatfs.h"
+#endif
 
 class Display_t {
 public:
