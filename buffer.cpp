@@ -26,6 +26,9 @@ void Buffer_t::task() {
 void Buffer_t::update_buffer() {
 	logger_setting logger_setting_obj = Logger_t::get_instance()->get_configs();
 	switch (logger_setting_obj.log_mode) {
+	case INSTANTANEOUS:
+		buff_values.buf_value_1 = this->value;
+		break;
 	case MIN:
 		buff_values.buf_value_1 = MIN(buff_values.buf_value_1, this->value);
 		break;
@@ -41,25 +44,44 @@ void Buffer_t::update_buffer() {
 	}
 }
 
-void Buffer_t::get_buffer(int address, double& value) {
-	switch (address)
-	{
-	case INSTANT_VALUE:
-		value = this->value;
-		break;
+int Buffer_t::get_buffer_size()
+{
+	return channel_address::CHANNEL_COUNTER;
+}
+
+void Buffer_t::get_buffer(channel_address channel_addr, double& value) {
+	logger_setting logger_setting_obj = Logger_t::get_instance()->get_configs();
+	switch (logger_setting_obj.log_mode) {
+	case INSTANTANEOUS_VALUE:
 	case MIN_VALUE:
-		value = this->buff_values.buf_value_1;
-		break;
 	case MAX_VALUE:
-		value = this->buff_values.buf_value_1;
+		value = this->get_value(channel_addr);
+		//value = this->buff_values.buf_value_1;
 		break;
 	case MEAN_VALUE:
 		value = buff_values.buf_value_1 / counter;
 		counter = 0;
 		break;
-
 	default:
 		break;
 	}
 	
+}
+
+double Buffer_t::get_value(channel_address channel_addr) {
+	double value = 0;
+	switch (channel_addr) {
+	case CHANNEL_0:
+		value = buff_values.buf_value_1;
+		break;
+	case CHANNEL_1:
+		break;
+	case CHANNEL_2:
+		break;
+	case CHANNEL_3:
+		break;
+	default:
+		break;
+	}
+	return value;
 }
