@@ -29,11 +29,12 @@ public:
 	void update_buffer();
 	int  get_buffer_size();
 	void get_buffer(channel_address channel_addr, double& value);
+	void get_instantaneous_value(channel_address channel_addr, double& value);
 	//Input_t* input_obj;
 	Communication_t* communication; //reserve to get data from peripherals
 private:
 	Buffer_t();
-	double get_value(channel_address channel_addr, double& value);
+	void get_value(channel_address channel_addr, double& value);
 	double value;
 	Buffer_channel buff_values;
 	int counter;

@@ -55,7 +55,7 @@ void Buffer_t::get_buffer(channel_address channel_addr, double& value) {
 	case INSTANTANEOUS_VALUE:
 	case MIN_VALUE:
 	case MAX_VALUE:
-		value = this->get_value(channel_addr);
+		this->get_value(channel_addr, value);
 		//value = this->buff_values.buf_value_1;
 		break;
 	case MEAN_VALUE:
@@ -68,8 +68,24 @@ void Buffer_t::get_buffer(channel_address channel_addr, double& value) {
 	
 }
 
-double Buffer_t::get_value(channel_address channel_addr) {
-	double value = 0;
+void Buffer_t::get_instantaneous_value(channel_address channel_addr, double& value) {
+	switch (channel_addr)
+	{
+	case CHANNEL_0:
+		value = this->value;
+		break;
+	case CHANNEL_1:
+		break;
+	case CHANNEL_2:
+		break;
+	case CHANNEL_3:
+		break;
+	default:
+		break;
+	}
+}
+
+void Buffer_t::get_value(channel_address channel_addr, double& value) {
 	switch (channel_addr) {
 	case CHANNEL_0:
 		value = buff_values.buf_value_1;
@@ -83,5 +99,4 @@ double Buffer_t::get_value(channel_address channel_addr) {
 	default:
 		break;
 	}
-	return value;
 }

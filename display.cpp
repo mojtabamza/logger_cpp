@@ -25,7 +25,7 @@ void Display_t::show()
 
 
 	//cout << "Instant Value : " << Input_t::get_instance()->get_instant_value() << endl;
-	Buffer_t::get_instance()->get_buffer(CHANNEL_0, temp);
+	Buffer_t::get_instance()->get_instantaneous_value(CHANNEL_0, temp);
 	cout << "Instant Value : " << temp << endl;
 
 #ifdef DESKTOP
