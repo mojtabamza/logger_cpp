@@ -14,7 +14,8 @@ constexpr auto _00_00 = 0;
 constexpr auto _23_59 = (23 * 60) + 59;
 
 enum logger_mode {
-	MIN = 0,
+	INSTANTANEOUS = 0,
+	MIN,
 	MAX,
 	MEAN,
 };
@@ -39,8 +40,9 @@ public:
 	void set_configs(int interval, logger_mode mode, int start_time, int stop_time);
 	logger_setting get_configs(void);
 	void make_log(string time_stamp, string data);
-	void ready_to_log(date_time& time_strct);
+	void prepare_to_log(date_time& time_strct);
 	string make_timestamp(date_time& time_strct);
+	string prepare_data(void);
 	
 private:
 	Logger_t();

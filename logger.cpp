@@ -24,7 +24,7 @@ void Logger_t::task()
         int time_between_start_and_now = current_time - logger_setting_obj.start_time;
         if (time_between_start_and_now % logger_setting_obj.interval == 0) {
             if (logger_setting_obj.status = ENABLE) {
-                this->ready_to_log(time_strct);
+                this->prepare_to_log(time_strct);
             }
         }
         
@@ -49,19 +49,23 @@ void Logger_t::make_log(string time_stamp, string data) {
     FILE.open("logger.txt", std::ios::out | std::ios::app);
     if (FILE.is_open()) {
         FILE << time_stamp;
+        FILE << " ";
+        FILE << data;
+        FILE << "\r\n";
         FILE.close();
     }
 #endif // DESKTOP
 }
 
-void Logger_t::ready_to_log(date_time& time_strct) {
+void Logger_t::prepare_to_log(date_time& time_strct) {
     string time_stamp = make_timestamp(time_strct);
-    make_log(time_stamp, "");
+    string data = prepare_data();
+    make_log(time_stamp, data);
 }
 
 string Logger_t::make_timestamp(date_time& time_strct) {
-    char time_stamp[33] = {0};
-    sprintf_s(time_stamp, "[%d.%02d.%02d][%02d:%02d:%02d]\r\n",
+    char time_stamp[31] = {0};
+    sprintf_s(time_stamp, "[%d.%02d.%02d][%02d:%02d:%02d]",
         time_strct.date_strct_obj.year,
         time_strct.date_strct_obj.month,
         time_strct.date_strct_obj.day,
@@ -69,6 +73,19 @@ string Logger_t::make_timestamp(date_time& time_strct) {
         time_strct.time_strct_obj.mm,
         time_strct.time_strct_obj.ss);
     return string(time_stamp);
+}
+
+string Logger_t::prepare_data(void)
+{
+    double value = 0;
+    char value_char[20] = {0};
+    string value_str = "";
+    for (int i = 0; i < channel_address::CHANNEL_COUNTER; i++) {
+        Buffer_t::get_instance()->get_buffer((channel_address)i, value);
+        sprintf_s(value_char, "[%0.2f]", value);
+        value_str += string(value_char);
+    }
+    return value_str;
 }
 
 Logger_t::Logger_t() : time_obj() {
