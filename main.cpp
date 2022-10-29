@@ -10,7 +10,7 @@ int main(void) {
 	Display_t	display;
 
 	Systick_t::get_instance()->add_task("input:		flag(0)",	5);
-	Systick_t::get_instance()->add_task("display:	flag(1)",	5);
+	Systick_t::get_instance()->add_task("display:	flag(1)",	10);
 	Systick_t::get_instance()->add_task("buffer:	flag(2)",	10);
 	Systick_t::get_instance()->add_task("logger:	flag(3)",	20);
 
