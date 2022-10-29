@@ -16,9 +16,13 @@ enum channel_address {
 	CHANNEL_2,
 	CHANNEL_3,
 	CHANNEL_COUNTER,
+	THE_LAST_CHANNEL = CHANNEL_COUNTER - 1,
 };
 struct Buffer_channel {
+	double buf_value_0;
 	double buf_value_1;
+	double buf_value_2;
+	double buf_value_3;
 };
 
 class Buffer_t {
