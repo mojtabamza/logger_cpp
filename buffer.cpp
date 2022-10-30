@@ -11,6 +11,7 @@ Buffer_t* Buffer_t::get_instance() {
 
 Buffer_t::Buffer_t() : communication() {
 	this->value = 0;
+	this->sample_count = 0;
 	this->counter = 0;
 	buff_values.buf_value_0 = this->value;
 	buff_values.buf_value_1 = this->value;
@@ -68,6 +69,10 @@ int Buffer_t::get_buffer_size()
 
 void Buffer_t::get_buffer(channel_address channel_addr, double& value) {
 	logger_setting logger_setting_obj = Logger_t::get_instance()->get_configs();
+	if (counter == 0) {
+		value = INVALID_VALUE_ERR;
+		return;
+	}
 	switch (logger_setting_obj.log_mode) {
 	case INSTANTANEOUS_VALUE:
 	case MIN_VALUE:
@@ -94,6 +99,7 @@ void Buffer_t::get_buffer(channel_address channel_addr, double& value) {
 			break;
 		}
 		if (channel_addr == THE_LAST_CHANNEL) {
+			this->sample_count = counter;
 			counter = 0;
 		}
 		break;
@@ -117,6 +123,10 @@ void Buffer_t::get_instantaneous_value(channel_address channel_addr, double& val
 	default:
 		break;
 	}
+}
+
+int Buffer_t::get_sample_count(void) {
+	return this->sample_count;
 }
 
 void Buffer_t::get_value(channel_address channel_addr, double& value) {

@@ -78,12 +78,21 @@ string Logger_t::make_timestamp(date_time& time_strct) {
 string Logger_t::prepare_data(void)
 {
     double value = 0;
-    char value_char[20] = {0};
+    char value_char[40] = {0};
     string value_str = "";
     for (int i = 0; i < channel_address::CHANNEL_COUNTER; i++) {
         Buffer_t::get_instance()->get_buffer((channel_address)i, value);
-        sprintf_s(value_char, "[%0.2f]", value);
+        if (value == INVALID_VALUE_ERR) {
+            sprintf_s(value_char, "[INVALID]");
+        }
+        else {
+            sprintf_s(value_char, "[%0.2f]", value);
+        }
         value_str += string(value_char);
+        if (i == THE_LAST_CHANNEL) {
+            sprintf_s(value_char, "[Sample_COUNT : %d]", Buffer_t::get_instance()->get_sample_count());
+            value_str += string(value_char);
+        }
     }
     return value_str;
 }

@@ -3,6 +3,7 @@
 #include "communication.hpp"
 #include "logger.hpp"
 #include "general_funcs.hpp"
+#include "error.hpp"
 
 enum buffer_mode {
 	INSTANTANEOUS_VALUE = 0,
@@ -34,12 +35,14 @@ public:
 	int  get_buffer_size();
 	void get_buffer(channel_address channel_addr, double& value);
 	void get_instantaneous_value(channel_address channel_addr, double& value);
+	int	 get_sample_count(void);
 	//Input_t* input_obj;
 	Communication_t* communication; //reserve to get data from peripherals
 private:
 	Buffer_t();
 	void get_value(channel_address channel_addr, double& value);
 	double value;
+	int sample_count;
 	Buffer_channel buff_values;
 	int counter;
 	struct setting {

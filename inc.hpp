@@ -5,6 +5,7 @@
 #include <string>
 #include <cstdlib>
 #include "appwizard.hpp"
+#include "error.hpp"
 
 using std::cout;
 using std::cin;
