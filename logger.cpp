@@ -107,6 +107,9 @@ string Logger_t::get_mode(void) {
     case MEAN:
         return "[MEAN-mode]";
         break;
+    default:
+        return "[NO-mode]";
+        break;
     }
 }
 
