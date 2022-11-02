@@ -17,21 +17,25 @@ int main(void) {
 	while (true)
 	{
 		Systick_t::get_instance()->systick_handler();
-		if (Systick_t::get_instance()->get_flag(0)) {
+		if (Systick_t::get_instance()->get_flag(0))
+		{
+			Systick_t::get_instance()->reset_flag(0);
 			Input_t::get_instance()->task();
 		}
-		if (Systick_t::get_instance()->get_flag(1)) {
+		if (Systick_t::get_instance()->get_flag(1))
+		{
+			Systick_t::get_instance()->reset_flag(1);
 			display.show();
 		}
-		if (Systick_t::get_instance()->get_flag(2)) {
+		if (Systick_t::get_instance()->get_flag(2))
+		{
+			Systick_t::get_instance()->reset_flag(2);
 			Buffer_t::get_instance()->task();
 		}
-		if (Systick_t::get_instance()->get_flag(3)) {
+		if (Systick_t::get_instance()->get_flag(3))
+		{
+			Systick_t::get_instance()->reset_flag(3);
 			Logger_t::get_instance()->task();
 		}
-
-		Systick_t::get_instance()->reset_flags();
 	}
-
-
 }
