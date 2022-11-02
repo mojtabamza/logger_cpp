@@ -24,7 +24,7 @@ void Buffer_t::set_configs() {
 }
 
 void Buffer_t::task() {
-	//this->value = Input_t::get_instance()->get_instant_value();
+	this->update_buffer();
 }
 
 void Buffer_t::update_buffer() {
