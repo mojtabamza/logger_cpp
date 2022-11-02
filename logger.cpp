@@ -56,7 +56,8 @@ void Logger_t::prepare_to_log(date_time& time_strct) {
     string time_stamp = make_timestamp(time_strct);
     string data = prepare_data();
     string mode = get_mode();
-    make_log(time_stamp, data, mode);
+    string interval = get_interval();
+    make_log(time_stamp, data, mode, interval);
 }
 
 string Logger_t::make_timestamp(date_time& time_strct) {
@@ -113,7 +114,13 @@ string Logger_t::get_mode(void) {
     }
 }
 
-void Logger_t::make_log(string time_stamp, string data, string mode) {
+string Logger_t::get_interval(void) {
+    char value_char[40] = { 0 };
+    sprintf_s(value_char, "[interval : %02d]", this->get_configs().interval);
+    return string(value_char);
+}
+
+void Logger_t::make_log(string time_stamp, string data, string mode, string interval) {
 #ifdef DESKTOP
     std::fstream FILE;
     FILE.open("logger.txt", std::ios::out | std::ios::app);
@@ -121,6 +128,7 @@ void Logger_t::make_log(string time_stamp, string data, string mode) {
         FILE << time_stamp;
         FILE << " ";
         FILE << data;
+        FILE << interval;
         FILE << mode;
         FILE << "\r\n";
         FILE.close();

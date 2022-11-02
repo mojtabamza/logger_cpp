@@ -39,7 +39,7 @@ public:
 	void task();
 	void set_configs(int interval, logger_mode mode, int start_time, int stop_time);
 	logger_setting get_configs(void);
-	void make_log(string time_stamp, string data, string mode);
+	void make_log(string time_stamp, string data, string mode, string interval);
 	void prepare_to_log(date_time& time_strct);
 	string make_timestamp(date_time& time_strct);
 	string prepare_data(void);
@@ -47,6 +47,7 @@ public:
 private:
 	Logger_t();
 	string get_mode(void);
+	string get_interval(void);
 	Date_Time_t* time_obj;
 	int class_time;
 	logger_setting logger_setting_obj;
