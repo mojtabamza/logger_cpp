@@ -35,7 +35,7 @@ void Logger_t::task()
     int current_time = (time_strct.time_strct_obj.hh * 60) + (time_strct.time_strct_obj.mm);
     if (class_time == current_time) {
         //Buffer_updateing
-        Buffer_t::get_instance()->update_buffer();
+        //Buffer_t::get_instance()->update_buffer();
         
         
     }
@@ -86,7 +86,7 @@ string Logger_t::prepare_data(void)
         }
         value_str += string(value_char);
         if (i == THE_LAST_CHANNEL) {
-            sprintf_s(value_char, "[Sample_COUNT : %d]", Buffer_t::get_instance()->get_sample_count());
+            sprintf_s(value_char, "[Sample_COUNT : %03d]", Buffer_t::get_instance()->get_sample_count());
             value_str += string(value_char);
         }
     }
