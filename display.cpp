@@ -5,17 +5,16 @@ Display_t::Display_t() : disp_time() {
 
 void Display_t::show()
 {
-	
+	char input_key = 0;
 	double temp;
 	date_time disp_time_strct;
 
 	system("CLS");
 
 	cout << disp_time->get_time_string() << endl;
-
-	
-	disp_time_strct = disp_time->get_time_struct();
 	cout << "********************************" << endl;
+
+	disp_time_strct = disp_time->get_time_struct();
 	cout << disp_time_strct.date_strct_obj.year << "/"
 		 << disp_time_strct.date_strct_obj.month << "/"
 		 << disp_time_strct.date_strct_obj.day << "  "

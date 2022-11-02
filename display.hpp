@@ -11,6 +11,11 @@
 #include "fatfs.h"
 #endif
 
+enum input_keys {
+	SET_CONFIG = 0,
+	GET_CONFIG,
+};
+
 class Display_t {
 public:
 	Display_t();
