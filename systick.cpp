@@ -32,7 +32,7 @@ void Systick_t::systick_handler() {
 
 void Systick_t::systick_isr() {
 	tick_counter++;
-	for (auto i = 0; i < tasks_vec.size(); i++) {
+	for (std::size_t i = 0; i < tasks_vec.size(); i++) {
 		if (tasks_vec[i]->exe_time == tick_counter) {
 			flags[i] = true;
 			tasks_vec[i]->exe_time = tasks_vec[i]->interval + tick_counter;
@@ -50,7 +50,7 @@ void Systick_t::reset_flag(int flag) {
 
 void Systick_t::reset_flags(void)
 {
-	for (auto i = 0; i < flags.size(); i++) {
+	for (std::size_t i = 0; i < flags.size(); i++) {
 		flags[i] = false;
 	}
 }
