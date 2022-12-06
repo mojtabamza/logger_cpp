@@ -43,7 +43,7 @@ void Logger_t::task()
         this->class_time = current_time;
         int time_between_start_and_now = current_time - logger_setting_obj.start_time;
         if (time_between_start_and_now % logger_setting_obj.interval == 0) {
-            if (logger_setting_obj.status = ENABLE) {
+            if (logger_setting_obj.status == ENABLE) {
                 this->prepare_to_log(time_strct);
             }
         }
@@ -62,7 +62,7 @@ void Logger_t::prepare_to_log(date_time& time_strct) {
 
 string Logger_t::make_timestamp(date_time& time_strct) {
     char time_stamp[31] = { 0 };
-    sprintf_s(time_stamp, "[%d.%02d.%02d][%02d:%02d:%02d]",
+    sprintf(time_stamp, "[%d.%02d.%02d][%02d:%02d:%02d]",
         time_strct.date_strct_obj.year,
         time_strct.date_strct_obj.month,
         time_strct.date_strct_obj.day,
@@ -80,14 +80,14 @@ string Logger_t::prepare_data(void)
     for (int i = 0; i < channel_address::CHANNEL_COUNTER; i++) {
         Buffer_t::get_instance()->get_buffer((channel_address)i, value);
         if (value == INVALID_VALUE_ERR) {
-            sprintf_s(value_char, "[INVALID]");
+            sprintf(value_char, "[INVALID]");
         }
         else {
-            sprintf_s(value_char, "[%0.2f]", value);
+            sprintf(value_char, "[%0.2f]", value);
         }
         value_str += string(value_char);
         if (i == THE_LAST_CHANNEL) {
-            sprintf_s(value_char, "[Sample_COUNT : %03d]", Buffer_t::get_instance()->get_sample_count());
+            sprintf(value_char, "[Sample_COUNT : %04d]", Buffer_t::get_instance()->get_sample_count());
             value_str += string(value_char);
         }
     }
@@ -116,7 +116,7 @@ string Logger_t::get_mode(void) {
 
 string Logger_t::get_interval(void) {
     char value_char[40] = { 0 };
-    sprintf_s(value_char, "[interval : %02d]", this->get_configs().interval);
+    sprintf(value_char, "[interval : %02d]", this->get_configs().interval);
     return string(value_char);
 }
 
